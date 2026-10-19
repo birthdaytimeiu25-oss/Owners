@@ -8,7 +8,7 @@ from pathlib import Path
 import discord
 from discord.ext import commands, tasks
 
-ALLOWED_GUILD_ID = 1503922700408586240
+ALLOWED_GUILD_ID = 1503922700408586240, 1543609182010351626
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 if not TOKEN:
