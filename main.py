@@ -5,8 +5,12 @@ import secrets
 import re
 import time
 from pathlib import Path
+from dotenv import load_dotenv
 import discord
 from discord.ext import commands, tasks
+
+# Đọc token từ file .env khi chạy bằng VS Code.
+load_dotenv()
 
 ALLOWED_GUILD_IDS = {1503922700408586240, 1543609182010351626}
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -231,6 +235,16 @@ async def on_ready():
                 print(f"Đã rời server không được phép: {guild.name} ({guild.id})")
             except Exception as e:
                 print(f"Lỗi khi rời server: {e}")
+
+    # Discord không cho bot tự nhận diện/giả lập biểu tượng thiết bị di động.
+    # Hiển thị hoạt động có biểu tượng điện thoại như phương án thay thế.
+    try:
+        await bot.change_presence(
+            status=discord.Status.online,
+            activity=discord.Game(name="📱 Mobile Status")
+        )
+    except (discord.HTTPException, discord.InvalidArgument) as e:
+        print(f"Không thể cập nhật trạng thái bot: {e}")
 
     # Slash command được sync một lần trong setup_hook(), không sync lại
     # mỗi lần Discord reconnect để giảm request và thời gian on_ready.
