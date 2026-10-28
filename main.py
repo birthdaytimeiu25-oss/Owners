@@ -1811,8 +1811,8 @@ class UGPhoneTrialView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=180)
 
-    @discord.ui.button(label="Nhập LocalStorage", style=discord.ButtonStyle.primary,
-                       emoji="📱", custom_id="birthdaytime_ugphone_trial_open")
+    @discord.ui.button(label="Buy trial", style=discord.ButtonStyle.primary,
+                       emoji="<a:shopping:1553606684037881866>", custom_id="birthdaytime_ugphone_trial_open")
     async def open_modal(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_modal(UGPhoneTrialModal())
 
@@ -1826,7 +1826,7 @@ async def claimtrial(interaction: discord.Interaction):
         return
     await interaction.response.send_message(
         "**UGPhone • Trial 4 giờ**\n"
-        "Bấm **Nhập LocalStorage** để nhập LocalStorage và chọn server (SG, HK, JP, GE, US).\n"
+        "Bấm **Buy trial** để trial.\n"
         "Chỉ nhập thông tin của tài khoản UGPhone bạn sở hữu. Dữ liệu không được lưu vào cơ sở dữ liệu bot.",
         view=UGPhoneTrialView(), ephemeral=True
     )
